@@ -49,7 +49,7 @@ public class UI {
                     break;
                 case 0: // manager admin
                     switch (requestChoice("[A]dd Interest, [M]onthly statement, [L]ist active, [G]enerate DTER, [C]ustomer Report, \n" +
-                            "[D]elete transaction, [S]et Date, [T]oggle Market or [E]xit: ", "AMLGCDESTamlgcdest", 5)) {
+                            "[D]elete transaction, [S]et Date, [T]oggle Market, set [P]rice, or [E]xit: ", "AMLGCDESTPamlgcdestp", 5)) {
                         case 'A': case 'a': bh.manualAccureInterest(); break;
                         case 'M': case 'm': monthlyStatement(); break;
                         case 'L': case 'l': bh.generateActiveUserList(); break;
@@ -58,12 +58,19 @@ public class UI {
                         case 'D': case 'd': deleteTransactions(); break;
                         case 'S': case 's': setDate(); break;
                         case 'T': case 't': toggleMarket(); break;
+                        case 'P': case 'p': setPrice(); break;
                         case 'E': case 'e': loginSignup(); break;
                         default: System.out.println("Max attempt time reached"); break;
                     }
                     break;
             }
         }
+    }
+
+    private static void setPrice(){
+        String name = requestString("Enter name of the stock: ", false, 3);
+        double tid = requestDouble("Enter new price: ", 0, 3);
+        bh.setStockPrice(name, tid);
     }
     private static void monthlyStatement(){
         int tid = requestInt("Enter customer Tax ID: ", 00000000, 3);

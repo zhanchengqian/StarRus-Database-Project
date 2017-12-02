@@ -835,6 +835,27 @@ boolean getTransactionHistory (Customer customer){
             return true;
         }
 
+    boolean setStockPrice(String stock_symbol, double price) {
+        if (price == 0) {
+            PrintExtension.warning("Wrong input for price, try again.");
+            return false;
+        }
+        String query = "UPDATE zhanchengqianDB.Stock "
+                + "SET zhanchengqianDB.Stock.current_price = ?"
+                + " WHERE  zhanchengqianDB.Stock.stock_symbol = ?";
+
+        try {
+            PreparedStatement preparedStatement = serverHandler.connection.prepareStatement(query);
+            preparedStatement.setDouble(1, price);
+            preparedStatement.setString(2, stock_symbol);
+            preparedStatement.executeUpdate();
+            PrintExtension.system("Set " + stock_symbol + " price to: " + price);
+            return true;
+        } catch (SQLException ignored) {
+            PrintExtension.debugWarn("Setting stock price failed w/ SQLException", DEBUGMODE);
+            return false;
+        }
+    }
 }
 
 
