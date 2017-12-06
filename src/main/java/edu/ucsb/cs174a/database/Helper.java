@@ -1111,17 +1111,17 @@ class Helper {
         String query =  "SELECT SUM(amount)" +
                 "FROM zhanchengqianDB.Transaction " +
                 "WHERE tax_id = ? AND m_acc_id = ? AND date >= ? AND date <= ? " +
-                "AND (type = ? OR type = ? OR type = ? OR type = ?)";
+                "AND (type = ? OR type = ?)";
         try {
             PreparedStatement preparedStatement = serverHandler.connection.prepareStatement(query);
             preparedStatement.setString(1, tid);
             preparedStatement.setString(2, aid);
             preparedStatement.setString(3, monthFront(date));
             preparedStatement.setString(4, monthEnd(date));
-            preparedStatement.setString(5, "stock_deduct");
-            preparedStatement.setString(6, "stock_loss");
-            preparedStatement.setString(7, "stock_earn");
-            preparedStatement.setString(8, "interest");
+            preparedStatement.setString(5, "stock_earn");
+//            preparedStatement.setString(6, "stock_loss");
+//            preparedStatement.setString(7, "stock_deduct");
+            preparedStatement.setString(6, "interest");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Dformat(resultSet.getDouble(1));

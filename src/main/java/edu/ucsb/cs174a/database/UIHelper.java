@@ -85,4 +85,11 @@ public class UIHelper {
 
         return -1;
     }
+
+    static String padZero (String str){
+        while (str.length() < 8){
+            str = "0" + str;
+        }
+        return str;
+    }
 }

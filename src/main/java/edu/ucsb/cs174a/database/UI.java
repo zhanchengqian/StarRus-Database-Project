@@ -74,13 +74,13 @@ public class UI {
     }
     private static void monthlyStatement(){
         int tid = requestInt("Enter customer Tax ID: ", 00000000, 3);
-        Customer customer = bh.queryCustomer(Integer.toString(tid));
+        Customer customer = bh.queryCustomer(padZero(Integer.toString(tid)));
         bh.generateMonthlyStatement(customer);
     }
 
     private static void customerReport(){
         int tid = requestInt("Enter customer Tax ID: ", 00000000, 3);
-        bh.generateCustomerReport(Integer.toString(tid));
+        bh.generateCustomerReport(padZero(Integer.toString(tid)));
     }
 
     private static void setDate(){
@@ -223,6 +223,7 @@ public class UI {
     }
 
     private static void farewell() {
+        PrintExtension.println("");
         PrintExtension.println("StarRus, Copyright (C) 2018, Zhancheng Qian.");
     }
 }

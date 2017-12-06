@@ -75,7 +75,7 @@ public class testBackendHandler {
     public void testGenerateCustomerReport(){
         ServerHandler serverHandler = new ServerHandler();
         BackendHandler backendHandler = new BackendHandler(serverHandler);
-        boolean boo = backendHandler.generateCustomerReport("1234567890");
+        boolean boo = backendHandler.generateCustomerReport("00000456");
     }
 
     @Test
